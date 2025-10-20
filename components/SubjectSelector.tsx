@@ -26,7 +26,7 @@ const SubjectSelector: React.FC<SubjectSelectorProps> = ({ subjects, activeSubje
   };
 
   return (
-    <aside className="w-full md:w-80 bg-slate-800 md:h-screen p-4 md:p-6 flex-shrink-0">
+    <aside className="w-full md:w-80 bg-slate-800/80 backdrop-blur-sm md:h-screen p-4 md:p-6 flex-shrink-0">
       <div className="hidden md:block mb-8">
         <h1 className="text-2xl font-bold text-cyan-400">Generador de</h1>
         <h2 className="text-xl font-semibold text-slate-300">Prompts Curriculares</h2>
@@ -46,8 +46,8 @@ const SubjectSelector: React.FC<SubjectSelectorProps> = ({ subjects, activeSubje
                     ${isDirectlyActive
                       ? 'bg-cyan-500 text-white shadow-lg'
                       : isParentOfActive
-                        ? 'bg-slate-600 text-white'
-                        : 'bg-slate-700 hover:bg-slate-600 text-slate-300'
+                        ? 'bg-slate-600/70 text-white'
+                        : 'bg-slate-700/70 hover:bg-slate-600/80 text-slate-300'
                     }
                     ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''}
                   `}
@@ -70,7 +70,7 @@ const SubjectSelector: React.FC<SubjectSelectorProps> = ({ subjects, activeSubje
                           className={`w-full text-left p-2 pl-5 rounded-md transition-colors duration-200
                             ${activeSubject === subSection
                               ? 'bg-cyan-500 text-white font-semibold'
-                              : 'text-slate-400 hover:bg-slate-600 hover:text-slate-200'
+                              : 'text-slate-400 hover:bg-slate-600/70 hover:text-slate-200'
                             }
                           `}
                         >
