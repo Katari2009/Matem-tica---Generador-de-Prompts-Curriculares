@@ -36,7 +36,7 @@ const PromptCard: React.FC<PromptCardProps> = ({ title, description, promptText,
   const currentTheme = themeClasses[theme];
 
   return (
-    <div className={`bg-slate-700 rounded-xl p-5 shadow-lg transform hover:scale-105 transition-transform duration-300 border-l-4 ${currentTheme.border}`}>
+    <div className={`bg-slate-800/40 backdrop-blur-md rounded-xl p-5 shadow-lg transform hover:scale-105 transition-transform duration-300 border border-slate-100/5 border-l-4 ${currentTheme.border}`}>
       <h4 className={`text-lg font-bold ${currentTheme.title} mb-1`}>{title}</h4>
       {description && <p className="text-slate-400 text-sm mb-4">{description}</p>}
       

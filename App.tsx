@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useEffect } from 'react';
 import SubjectSelector from './components/SubjectSelector';
 import Welcome from './components/Welcome';
@@ -30,40 +29,19 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <style>{`
-        .dynamic-bg-container {
-          /* Creates a new stacking context to contain the z-index: -1 pseudo-element */
-          isolation: isolate;
-        }
-        .dynamic-bg-container::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-image: var(--bg-image);
-          background-size: cover;
-          background-position: center;
-          background-attachment: fixed;
-          opacity: 0.15; /* Increased opacity for better visibility */
-          filter: blur(2px); /* Added a subtle blur for depth */
-          z-index: -1; /* This is the key fix: places the pseudo-element behind the container's content */
-          transition: background-image 1s ease-in-out;
-        }
-        /* Ensure all direct children are stacked on top of the background pseudo-element */
-        .dynamic-bg-container > * {
-          position: relative;
-          z-index: 1;
-        }
-      `}</style>
-      {/* The main container is now transparent, allowing the ::before pseudo-element to be visible. The base background is on the body. */}
+    <div className="relative h-screen w-screen overflow-hidden bg-slate-900">
+      {/* Background Image Layer */}
       <div
-        className="h-screen text-white font-sans flex flex-col md:flex-row dynamic-bg-container relative"
-        style={{ '--bg-image': `url(${background})` } as React.CSSProperties}
-      >
-        <header className="md:hidden p-4 bg-slate-800 border-b border-slate-700">
+        className="absolute inset-0 z-0 bg-cover bg-center transition-all duration-1000"
+        style={{
+          backgroundImage: `url(${background})`,
+          filter: 'brightness(0.5) blur(4px)', // Darken and blur the background for depth and readability
+        }}
+      />
+
+      {/* Content Layer */}
+      <div className="relative z-10 h-full text-white font-sans flex flex-col md:flex-row">
+        <header className="md:hidden p-4 bg-slate-900/50 backdrop-blur-sm border-b border-slate-100/10">
           <h1 className="text-2xl font-bold text-center text-cyan-400">Generador de Prompts</h1>
         </header>
         
@@ -81,7 +59,7 @@ const App: React.FC = () => {
           {selectedSection === 'Herramientas Transversales' && <TransversalTools />}
         </main>
       </div>
-    </>
+    </div>
   );
 };
 

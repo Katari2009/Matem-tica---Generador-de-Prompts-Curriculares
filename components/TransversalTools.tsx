@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PromptCard from './PromptCard';
 
@@ -37,7 +36,7 @@ const tools = [
 
 const TransversalTools: React.FC = () => {
   return (
-    <div className="bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-2xl p-6 w-full h-full overflow-y-auto animate-fade-in">
+    <div className="bg-slate-900/30 backdrop-blur-xl border border-slate-100/10 rounded-2xl shadow-2xl p-6 w-full h-full overflow-y-auto animate-fade-in">
       <header className="mb-6 text-center border-b-2 border-indigo-500 pb-3">
         <h3 className="text-2xl font-extrabold text-white flex items-center justify-center">
           <span role="img" aria-label="tools icon" className="mr-2">🛠️</span>
