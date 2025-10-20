@@ -1,3 +1,4 @@
+
 import React, { useState, useCallback, useEffect } from 'react';
 import SubjectSelector from './components/SubjectSelector';
 import Welcome from './components/Welcome';
@@ -31,6 +32,10 @@ const App: React.FC = () => {
   return (
     <>
       <style>{`
+        .dynamic-bg-container {
+          /* Creates a new stacking context to contain the z-index: -1 pseudo-element */
+          isolation: isolate;
+        }
         .dynamic-bg-container::before {
           content: '';
           position: absolute;
@@ -42,8 +47,9 @@ const App: React.FC = () => {
           background-size: cover;
           background-position: center;
           background-attachment: fixed;
-          opacity: 0.1;
-          z-index: 0;
+          opacity: 0.15; /* Increased opacity for better visibility */
+          filter: blur(2px); /* Added a subtle blur for depth */
+          z-index: -1; /* This is the key fix: places the pseudo-element behind the container's content */
           transition: background-image 1s ease-in-out;
         }
         /* Ensure all direct children are stacked on top of the background pseudo-element */
@@ -52,9 +58,9 @@ const App: React.FC = () => {
           z-index: 1;
         }
       `}</style>
-      {/* Fix: Cast style object to React.CSSProperties to allow for CSS custom properties. */}
+      {/* The main container is now transparent, allowing the ::before pseudo-element to be visible. The base background is on the body. */}
       <div
-        className="h-screen bg-slate-900 text-white font-sans flex flex-col md:flex-row dynamic-bg-container relative"
+        className="h-screen text-white font-sans flex flex-col md:flex-row dynamic-bg-container relative"
         style={{ '--bg-image': `url(${background})` } as React.CSSProperties}
       >
         <header className="md:hidden p-4 bg-slate-800 border-b border-slate-700">
